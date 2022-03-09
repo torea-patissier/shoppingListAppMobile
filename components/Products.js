@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, TextInput, Button, FlatList, TouchableWithoutFeedback} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, FlatList, TouchableOpacity} from 'react-native';
 import React from 'react';
 
 const Product = ({ propsData }) => {
 
     return(
-      <TouchableWithoutFeedback
-      onPress={() => alert('OK')}
+      <TouchableOpacity
+      onPress={() => console.log('Click!')}
       >
         <View>
             <Text 
@@ -14,7 +14,7 @@ const Product = ({ propsData }) => {
                 {/* propsData est le props passé en paramètre dans App.js */}
             </Text>
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
     )
 
 }
