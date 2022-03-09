@@ -1,16 +1,12 @@
-import { StyleSheet, Text, View, TextInput, Button, FlatList, Pressable} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-const Product = ({ propsData }) => {
+const Product = ({ propsData, propsId, propsDelete }) => {
 
     return(
-      <Pressable
-      onLongPress={() => console.log('Click!')}
-      style={({pressed}) => [
-        {
-          backgroundColor: pressed ? "red" : "green"
-        }
-      ]}
+      <TouchableOpacity
+      onPress ={() => propsDelete(propsId)}
+      // OnPress je déclenche la méthode passé par propsDelete en lui passant l'id du produit à delete
       >
         <View>
             <Text 
@@ -19,7 +15,7 @@ const Product = ({ propsData }) => {
                 {/* propsData est le props passé en paramètre dans App.js */}
             </Text>
         </View>
-      </Pressable>
+      </TouchableOpacity>
     )
 
 }

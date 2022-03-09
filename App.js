@@ -21,6 +21,12 @@ export default function App() {
       setMyProducts( currentMyProducts => [{key : idString, name : product},...currentMyProducts])
   }
 
+  const deleteProduct = (key) => {
+    // Je set setMyProducts en renvoyant les produits de la liste contenant un id différent de celui sur lequel je clique
+    setMyProducts(currentMyProducts => {
+      return currentMyProducts.filter(product => product.key != key)
+    })
+  }
 
   return (
 
@@ -33,7 +39,12 @@ export default function App() {
       {/* Liste */}
       <FlatList
       data = {myProducts}
-      renderItem = {({item})=> <Product propsData = {item.name} /> }
+      renderItem = {({item})=> 
+      (<Product
+        propsData = {item.name}
+        propsId = {item.key}
+        propsDelete = {deleteProduct}
+        />) }
       /**
        * J'affiche le composent Product qui prend en  paramètre nomDuProduit
        * nomDuProduit prend en valeur item.name soit la valeur entrée dans l'input
