@@ -26,7 +26,9 @@ const AddProduct = ({propsDeFonction} ) => {
             {/* Bouton */}
             <Button
                 title='Valider'
-                onPress={() => propsDeFonction(product)}
+                onPress={() => propsDeFonction(product, setProduct)}
+                //product et setProduct sont renvoyé vers le parents donc App.js 
+                // et permet de changer le state de product et de vider l'input
             />
 
       </View>

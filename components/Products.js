@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View, TextInput, Button, FlatList} from 'react-native';
 import React from 'react';
 
-const Product = ({ nomDuProduit }) => {
+const Product = ({ propsData }) => {
 
     return(
         <View>
             <Text 
                 style={styles.element}>
-                { nomDuProduit } 
-                {/* nomDuProduit est le props passé en paramètre dans App.js */}
+                { propsData } 
+                {/* propsData est le props passé en paramètre dans App.js */}
             </Text>
         </View>
     )
