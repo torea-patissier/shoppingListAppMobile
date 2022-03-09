@@ -7,9 +7,12 @@ const AddProduct = ({propsDeFonction} ) => {
     const [product, setProduct] = useState('')// J'entre une valeur dans l'input
 
     const inputHandler = (val) => { // Je set product via la valeur passé dans l'input
-
         setProduct(val)
+    }
 
+    const handleClick = () => {
+        propsDeFonction(product)
+        setProduct('')
     }
 
     return(
@@ -26,9 +29,7 @@ const AddProduct = ({propsDeFonction} ) => {
             {/* Bouton */}
             <Button
                 title='Valider'
-                onPress={() => propsDeFonction(product, setProduct)}
-                //product et setProduct sont renvoyé vers le parents donc App.js 
-                // et permet de changer le state de product et de vider l'input
+                onPress={handleClick}
             />
 
       </View>

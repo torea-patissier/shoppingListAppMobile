@@ -9,17 +9,16 @@ export default function App() {
   const [myProducts, setMyProducts] = useState([]);
 
   //Product == information qu'on va assigner à la propriété name
-  const submitHandler = (product, setProduct) => {
+  const submitHandler = (product) => {
 
     /**
-     * product et setProduct sont envoyé ensuite en props grâce à propsDeFonction dans AddProduct.js
+     * product est envoyé ensuite en props grâce à propsDeFonction dans AddProduct.js
      * 
      */
 
       // Variable qui prend la date en mms depuis le 01/01/1970 et converti en string ( pour avoir id unique)
       const idString = Date.now().toString()
       setMyProducts( currentMyProducts => [{key : idString, name : product},...currentMyProducts])
-      setProduct(''); // Permet de vider l'input une fois qu'on appuie sur valider
   }
 
 
