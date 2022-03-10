@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Button, FlatList, Alert} from 'react-native';
+import { StyleSheet, View, FlatList} from 'react-native';
 import { useState } from 'react';
 import Product from './components/Products'; // J'importe le composent produit
 import AddProduct from './components/AddProduct'; //J'importe le composent addProduct
@@ -6,44 +6,16 @@ import AddProduct from './components/AddProduct'; //J'importe le composent addPr
 export default function App() {
 
   // J'enregistre ici les différents produits dans un tableau
-  const [myProducts, setMyProducts] = useState([]);
-
+  const [myProducts, setMyProducts] = useState([]); 
+  
   //Product == information qu'on va assigner à la propriété name
   const submitHandler = (product) => {
-
-    if(product.length > 1){
       /**
        * product est envoyé ensuite en props grâce à propsDeFonction dans AddProduct.js
        */
       // Variable qui prend la date en mms depuis le 01/01/1970 et converti en string ( pour avoir id unique)
       const idString = Date.now().toString()
       setMyProducts( currentMyProducts => [{key : idString, name : product},...currentMyProducts])
-    }else{
-      //Voir définition de Alert puis alertstatic
-      Alert.alert('Erreur',
-      'Vous devez saisir plus d\'un caractère',
-      [
-        {
-          text: 'D\'accord',
-          onPress: () => console.warn('Refusé'),
-          style: 'destructive'
-        },
-        {
-          text: 'Non',
-          onPress: () => console.warn('Non'),
-          style: 'cancel'
-        },
-        {
-          text: 'Oui',
-          onPress: () => console.warn('Oui'),
-          style: 'default'
-        },
-      ],
-      {
-        cancelable: true
-      }
-      )
-    }
   }
 
   const deleteProduct = (key) => {

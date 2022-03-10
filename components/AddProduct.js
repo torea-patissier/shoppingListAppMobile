@@ -1,10 +1,22 @@
 import { StyleSheet, Text, View, TextInput, Button, FlatList} from 'react-native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 const AddProduct = ({propsDeFonction} ) => {
 
     const [product, setProduct] = useState('')// J'entre une valeur dans l'input
+    const [btnDisable, setbtnDisable] = useState(true)// J'entre une valeur dans l'input
+
+    useEffect(() => { //useEffect
+
+        if(product.length > 2){
+            setbtnDisable(false);
+        }else{
+            setbtnDisable(true);
+        }
+
+    }, [product])
+    
 
     const inputHandler = (val) => { // Je set product via la valeur passé dans l'input
         setProduct(val)
@@ -30,6 +42,7 @@ const AddProduct = ({propsDeFonction} ) => {
             <Button
                 title='Valider'
                 onPress={handleClick}
+                disabled= {btnDisable} // ON/OFF du bouton
             />
 
       </View>
