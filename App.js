@@ -11,14 +11,16 @@ export default function App() {
   //Product == information qu'on va assigner à la propriété name
   const submitHandler = (product) => {
 
-    /**
-     * product est envoyé ensuite en props grâce à propsDeFonction dans AddProduct.js
-     * 
-     */
-
+    if(product.length > 1){
+      /**
+       * product est envoyé ensuite en props grâce à propsDeFonction dans AddProduct.js
+       */
       // Variable qui prend la date en mms depuis le 01/01/1970 et converti en string ( pour avoir id unique)
       const idString = Date.now().toString()
       setMyProducts( currentMyProducts => [{key : idString, name : product},...currentMyProducts])
+    }else{
+      alert('Refusé !')
+    }
   }
 
   const deleteProduct = (key) => {
