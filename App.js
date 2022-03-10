@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, Modal, Text} from 'react-native';
+import { StyleSheet, View, FlatList, Modal, Text, Pressable} from 'react-native';
 import { useState } from 'react';
 import Product from './components/Products'; // J'importe le composent produit
 import AddProduct from './components/AddProduct'; //J'importe le composent addProduct
@@ -43,8 +43,33 @@ export default function App() {
       visible = {modal}
       // onPress = {() => setModal(false)}
       animationType = 'slide'
+      transparent
       >
-        <Text>Hello</Text>
+        <View style={styles.modalContainer}>
+
+          <View style={styles.modalContent}>
+
+            <View style={styles.modalHeader}>
+              <Text>Erreur</Text>
+            </View>
+
+            <View style={styles.modalBody}>
+              <Text>Merci d'indiquer plus  d'un caractère</Text>
+            </View>
+
+            <View style={styles.modalFooter}>
+              <Pressable
+              onPress = {() => setModal(false)}
+              >
+              <Text>Mercé</Text>
+              </Pressable>
+              {/* Pressable utile */}
+            </View>
+
+          </View>
+
+        </View>
+
       </Modal>
  
 
@@ -77,5 +102,43 @@ const styles = StyleSheet.create({
   container: {
     padding: 40,
     paddingTop:60,
+  },
+  modalContainer: {
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+    
+  },
+  modalContent: {
+    alignItems:'center',
+    backgroundColor:'green',
+    borderRadius:4,
+    height:250,
+    width:'80%',
+  },
+  modalHeader: {
+    backgroundColor: 'yellow',
+    width: '100%',
+    padding: 10,
+    alignItems: 'center',
+    borderTopLeftRadius:4,
+    borderTopRightRadius:4,
+
+  },
+  modalBody: {
+    backgroundColor:'lightblue',
+    flex:1,
+    width:'100%',
+    alignItems:'center',
+    justifyContent:'center',
+  },
+  modalFooter: {
+    height:'20%',
+    backgroundColor:'red',
+    width:'100%',
+    borderBottomLeftRadius:4,
+    borderBottomRightRadius:4,
+    alignItems:'center',
+    justifyContent:'center',
   },
 });
