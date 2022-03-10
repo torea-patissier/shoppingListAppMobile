@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Button, FlatList} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, FlatList, Alert} from 'react-native';
 import { useState } from 'react';
 import Product from './components/Products'; // J'importe le composent produit
 import AddProduct from './components/AddProduct'; //J'importe le composent addProduct
@@ -19,7 +19,30 @@ export default function App() {
       const idString = Date.now().toString()
       setMyProducts( currentMyProducts => [{key : idString, name : product},...currentMyProducts])
     }else{
-      alert('Refusé !')
+      //Voir définition de Alert puis alertstatic
+      Alert.alert('Erreur',
+      'Vous devez saisir plus d\'un caractère',
+      [
+        {
+          text: 'D\'accord',
+          onPress: () => console.warn('Refusé'),
+          style: 'destructive'
+        },
+        {
+          text: 'Non',
+          onPress: () => console.warn('Non'),
+          style: 'cancel'
+        },
+        {
+          text: 'Oui',
+          onPress: () => console.warn('Oui'),
+          style: 'default'
+        },
+      ],
+      {
+        cancelable: true
+      }
+      )
     }
   }
 
