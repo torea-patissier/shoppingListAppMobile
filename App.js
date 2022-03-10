@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList} from 'react-native';
+import { StyleSheet, View, FlatList, Modal, Text} from 'react-native';
 import { useState } from 'react';
 import Product from './components/Products'; // J'importe le composent produit
 import AddProduct from './components/AddProduct'; //J'importe le composent addProduct
@@ -7,16 +7,26 @@ export default function App() {
 
   // J'enregistre ici les différents produits dans un tableau
   const [myProducts, setMyProducts] = useState([]); 
+  const [modal, setModal] = useState(false); 
   
   //Product == information qu'on va assigner à la propriété name
   const submitHandler = (product) => {
-      /**
-       * product est envoyé ensuite en props grâce à propsDeFonction dans AddProduct.js
-       */
-      // Variable qui prend la date en mms depuis le 01/01/1970 et converti en string ( pour avoir id unique)
-      const idString = Date.now().toString()
-      setMyProducts( currentMyProducts => [{key : idString, name : product},...currentMyProducts])
+
+      if (product.length > 1) {
+        /**
+         * product est envoyé ensuite en props grâce à propsDeFonction dans AddProduct.js
+         */
+        // Variable qui prend la date en mms depuis le 01/01/1970 et converti en string ( pour avoir id unique)
+        const idString = Date.now().toString()
+        setMyProducts( currentMyProducts => [{key : idString, name : product},...currentMyProducts])
+
+      } else {
+        setModal(true)
+      }
+
   }
+
+    
 
   const deleteProduct = (key) => {
     // Je set setMyProducts en renvoyant les produits de la liste contenant un id différent de celui sur lequel je clique
@@ -28,6 +38,15 @@ export default function App() {
   return (
 
     <View style={styles.container}>
+
+      <Modal
+      visible = {modal}
+      // onPress = {() => setModal(false)}
+      animationType = 'slide'
+      >
+        <Text>Hello</Text>
+      </Modal>
+ 
 
       <AddProduct propsDeFonction = {submitHandler} /> 
       {/* J'affiche le composent AddProduct qui prend en paramètre le props propsDeFonction
